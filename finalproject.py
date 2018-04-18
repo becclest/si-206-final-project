@@ -297,7 +297,20 @@ def get_world_politics():
     except Error as e:
         print(e)
 
-    # Domestic Table: ID, Headline, Alpha2, Polarity Score, Upvote Score
+    # International Table: ID, Headline, Alpha2, Polarity Score, Upvote Score
+
+    for post in data_all:
+        insertion = (None, post['data']['title'], None,
+                     None, post['data']['score'])
+        statement = 'INSERT INTO "International" '
+        statement += 'VALUES (?, ?, ?, ?, ?)'
+        cur.execute(statement, insertion)
+
+    for post in polarity_score:
+        cur.execute('INSERT INTO International (Polarity) VALUES (?)', (post,))
 
     conn.commit()
     conn.close()
+
+
+get_world_politics()
