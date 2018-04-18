@@ -4,6 +4,9 @@ import csv
 import json
 import time
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
+import plotly.plotly as py
+import plotly.graph_objs as go
+
 
 DBNAME = 'country.db'
 GDPCSV = '2014_world_gdp_with_codes.csv'
@@ -198,8 +201,8 @@ def insert_data():
             statement += 'VALUES (?, ?, ?, ?)'
             cur.execute(statement, insertion)
 
-        conn.commit()
-        conn.close()
+    conn.commit()
+    conn.close()
 
 
 def get_politics_data():
@@ -257,7 +260,6 @@ def get_politics_data():
     conn.commit()
     conn.close()
 
-
 def get_world_politics():
     sia = SIA()
     headlines = []
@@ -313,4 +315,38 @@ def get_world_politics():
     conn.close()
 
 
-get_world_politics()
+trace0 = go.Scatter(
+    x=[1, 2, 3, 4],
+    y=[10, 15, 13, 17],
+    mode='markers'
+)
+trace1 = go.Scatter(
+    type='scatter',
+    x=[1, 2, 3, 4],
+    y=[16, 5, 11, 9],
+    marker=dict(
+        color='purple',
+        size=10
+    ),
+    line=dict(
+        color='rgb(230,230,230)',
+        width=4
+    ),
+    mode='markers+lines'
+)
+data = [trace0, trace1]
+
+layout = go.Layout(
+    title="A simple plotly example",
+    xaxis = dict(
+        range=[0, 5]
+    ),
+    yaxis = dict(
+        range=[0, 25]
+    ),
+    height=500,
+    width=1000
+)
+
+fig = go.Figure(data=data, layout=layout)
+py.plot(fig, filename = 'basic-line')
