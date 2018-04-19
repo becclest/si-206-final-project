@@ -1,0 +1,109 @@
+<!-- index.html -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Brianna's Final Project</title>
+
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+            padding-top: 54px;
+        }
+
+        @media (min-width: 992px) {
+            body {
+                padding-top: 56px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="mt-5">Brianna Eccleston's Final Project for SI 206</h1>
+                <table style="width:100%">
+                    <tr>
+                        <th>
+                            Description of Final Project
+                        </th>
+                        <th>
+                            Data Sources Used
+                        </th>
+                        <th>
+                            Description of Code Structure
+                        </th>
+                        <th>
+                            Brief User Guide
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            For my final project, I decided to retrieve data from two popular subreddits: WorldPolitics and Politics. I wrote a program that created a database to store information from these subreddits. I used JSON data retrieved from https://restcountries.eu/ (used
+                            in project 3), which contained information about all countries. I then used a CSV file that contained the 2014 GDP for all countries, joined that with the JSON data. Once I had this data about all of the countries, I was able
+                            to sort and categorize trends of news by country, region, and a country's wealth. I decided to use this because I wanted to see if there are geographic trends in the tone of news headlines. I also wanted to compare the polarity
+                            between our domestic news about politics versus international.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <strong>Reddit API:</strong> <br />Post headings and score from subreddits /r/WorldPolitics and /r/Politics
+                                </li>
+                                <br />
+                                <li>
+                                    <strong>2014 GDP Data:</strong> <br />2014 World GDP with Codes from <a href="https://github.com/plotly/datasets/blob/master/2014_world_gdp_with_codes.csv">Plotly Github repo</a>
+                                </li>
+                                <br />
+                                <li>
+                                    <strong>Rest Countries</strong><br />Data for all countries in the world from the API of <a href='http://restcountries.eu'>restcountries.</a>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    Implemented Cache without expiration for requesting the Reddit API to recieve data for /r/Politics and /r/WorldPolitics
+                                </li>
+                                <br />
+                                <li>
+                                    Initialized a database with several tables to manage data:
+                                    <ul>
+                                        <li>
+                                            <strong>Countries: </strong>Table from the JSON data retrieved by Rest Countries containing data about all countries.
+                                            <li>
+                                                <strong>Domestic: </strong>Data retrieved from /r/Politics and updated to this table.
+                                            </li>
+                                            <li>
+                                                <strong>GDP: </strong>Data retrieved from the Plotly repo with 2014 GDP data, read in as a CSV.
+                                            </li>
+                                            <li>
+                                                <strong>International: </strong>Data retrieved from /r/WorldPolitics and updated to this table.
+                                            </li <li>
+                                            <strong>Money</strong>: Data joined from the RestCountries and Plotly
+                                        </li>
+                                        <li>
+                                            <strong>International Data: </strong>Data retrieved from /r/WorldPolitics, joined with data from Money
+                                        </li>
+                                </li>
+                                </ul>
+                                </li>
+                            </ul>
+
+                            <td>
+
+                            </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
