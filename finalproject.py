@@ -239,6 +239,16 @@ def get_politics_data():
         elif res['compound'] < -0.2:
             neg_list.append(post['data']['title'])
 
+    with open("pos_news_titles_domestic.txt", "w", encoding='utf-8',
+              errors='ignore') as f_pos:
+        for post in pos_list:
+            f_pos.write(post + "\n")
+
+    with open("neg_news_titles_domestic.txt", "w", encoding='utf-8',
+              errors='ignore') as f_neg:
+        for post in neg_list:
+            f_neg.write(post + "\n")
+
     try:
         conn = sqlite3.connect(DBNAME)
         cur = conn.cursor()
@@ -259,6 +269,7 @@ def get_politics_data():
 
     conn.commit()
     conn.close()
+
 
 def get_world_politics():
     sia = SIA()
@@ -293,6 +304,17 @@ def get_world_politics():
             pos_list.append(post['data']['title'])
         elif res['compound'] < -0.2:
             neg_list.append(post['data']['title'])
+
+    with open("pos_news_titles_international.txt", "w", encoding='utf-8',
+              errors='ignore') as f_pos:
+        for post in pos_list:
+            f_pos.write(post + "\n")
+
+    with open("neg_news_titles_international.txt", "w", encoding='utf-8',
+              errors='ignore') as f_neg:
+        for post in neg_list:
+            f_neg.write(post + "\n")
+
     try:
         conn = sqlite3.connect(DBNAME)
         cur = conn.cursor()
@@ -313,3 +335,5 @@ def get_world_politics():
 
     conn.commit()
     conn.close()
+
+get_world_politics()
